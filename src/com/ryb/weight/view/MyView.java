@@ -6,17 +6,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 public class MyView extends View
 {
 
-	//DisplayMetrics dm = new DisplayMetrics();
 	DisplayMetrics dm = getResources().getDisplayMetrics();
 	
 	float graphWidth = dm.widthPixels - 200;
-	float graphHeight = dm.heightPixels - 200;
+	float graphHeight = dm.heightPixels - 400;
 	float originPointX = 100;
 	float originPointY = 50;
 	//float defaultWeightValue = (float) 80.4;
@@ -28,6 +28,16 @@ public class MyView extends View
 	public MyView(Context context)
 	{
 		super(context);
+	}
+
+	public MyView(Context context, AttributeSet attrs)
+	{
+		this(context, attrs, 0);
+	}
+
+	public MyView(Context context, AttributeSet attrs, int defStyle)
+	{
+		super(context, attrs, defStyle);
 	}
 
 	@Override

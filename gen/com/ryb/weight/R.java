@@ -104,25 +104,32 @@ containing a value of this type.
     public static final class id {
         public static final int FILL=0x7f090000;
         public static final int STROKE=0x7f090001;
-        public static final int action_settings=0x7f09000e;
+        public static final int action_settings=0x7f090013;
         public static final int bodyMassIndex=0x7f090007;
+        public static final int chart_button=0x7f090008;
         public static final int date_month=0x7f090004;
         public static final int date_year=0x7f090002;
-        public static final int dialog_weight=0x7f090008;
-        public static final int etvalue_weight=0x7f09000a;
+        public static final int dialog_weight=0x7f090009;
+        public static final int etvalue_weight=0x7f09000b;
+        public static final int goal=0x7f09000d;
+        public static final int goalValue=0x7f09000e;
+        public static final int height=0x7f09000f;
+        public static final int heightValue=0x7f090010;
         public static final int kg=0x7f090005;
         public static final int roundProgressBar2=0x7f090006;
-        public static final int setting_dialog=0x7f09000b;
-        public static final int title_button=0x7f09000d;
-        public static final int title_text=0x7f09000c;
-        public static final int tvvalue_update=0x7f090009;
+        public static final int setting_dialog=0x7f09000c;
+        public static final int title_button=0x7f090012;
+        public static final int title_text=0x7f090011;
+        public static final int tvvalue_update=0x7f09000a;
         public static final int weight=0x7f090003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int dialog_weight=0x7f030001;
-        public static final int setting_dialog=0x7f030002;
-        public static final int title=0x7f030003;
+        public static final int chart_layout=0x7f030001;
+        public static final int dialog_weight=0x7f030002;
+        public static final int setting_dialog=0x7f030003;
+        public static final int setting_layout=0x7f030004;
+        public static final int title=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;
