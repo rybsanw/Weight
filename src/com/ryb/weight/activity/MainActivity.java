@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity
 	public TextView myTextMonth = null;
 	public TextView myTextWeight = null;
 	public TextView myTextKg = null;
-	public String date = "error";
+	public static String date = "error";
 
 	public Button title_button = null;
 	public Button dialog_button = null;
@@ -75,6 +75,12 @@ public class MainActivity extends BaseActivity
 		mySharedPreferences.putString("weight", "82.2");
 		mySharedPreferences.putString("goalValue", "75.0");
 		mySharedPreferences.putString("heightValue", "175");
+		
+		mySharedPreferences.putString("2016/4/1","82.6");
+		mySharedPreferences.putString("2016/4/2","82.0");
+		mySharedPreferences.putString("2016/4/3","83.5");
+		mySharedPreferences.putString("2016/4/4","82.8");
+		
 		myTextWeight.setText(mySharedPreferences.getString("weight"));
 		
 		dm = getResources().getDisplayMetrics();
@@ -94,6 +100,7 @@ public class MainActivity extends BaseActivity
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d", Locale.CHINA);
 		date = sdf.format(new Date());
 
+		mySharedPreferences.putString("current_date",date);
 		myTextYear.setText(date.subSequence(0, 4));
 		myTextMonth.setText(date.subSequence(5, date.length()));
 
@@ -199,6 +206,8 @@ public class MainActivity extends BaseActivity
 											myTextWeight.setText(edValue_weight.getText().toString());
 										}
 										mySharedPreferences.putString("weight",edValue_weight.getText().toString());
+										mySharedPreferences.putString(date,edValue_weight.getText().toString());
+										
 										showRoundProgressBar();
 										showBMI();
 									}
