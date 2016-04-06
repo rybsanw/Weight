@@ -59,6 +59,18 @@ public class MainActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		mySharedPreferences = MySharedPreferences.getInstance(MainActivity.this);
+		if(TextUtils.isEmpty(mySharedPreferences.getString("isFirstStart")))
+		{
+			mySharedPreferences.putString("isFirstStart", "false");
+			Intent intent = new Intent(MainActivity.this,SettingActivity.class);
+			startActivity(intent);
+			finish();
+			return;
+		}
+		
+		
+		
 		setContentView(R.layout.activity_main);
 		title = (TextView) findViewById(R.id.title_text);
 		title_button = (Button) findViewById(R.id.title_button);
@@ -71,17 +83,16 @@ public class MainActivity extends BaseActivity
 		roundProgressBar = (RoundProgressBar) findViewById(R.id.roundProgressBar2);
 		bodyMassIndex = (BodyMassIndex) findViewById(R.id.bodyMassIndex);
 		
-		mySharedPreferences = MySharedPreferences.getInstance(MainActivity.this);
-		mySharedPreferences.putString("weight", "82.2");
+		/*mySharedPreferences.putString("startWeight", "82.2");
 		mySharedPreferences.putString("goalValue", "75.0");
 		mySharedPreferences.putString("heightValue", "175");
 		
 		mySharedPreferences.putString("2016/4/1","82.6");
 		mySharedPreferences.putString("2016/4/2","82.0");
 		mySharedPreferences.putString("2016/4/3","83.5");
+		mySharedPreferences.putString("2016/4/4","82.8");*/
 		mySharedPreferences.putString("2016/4/4","82.8");
 		
-		myTextWeight.setText(mySharedPreferences.getString("weight"));
 		
 		dm = getResources().getDisplayMetrics();
 		width = dm.widthPixels;
@@ -115,13 +126,34 @@ public class MainActivity extends BaseActivity
 	protected void onStart()
 	{
 		super.onStart();
+		if(TextUtils.isEmpty(mySharedPreferences.getString(date)))
+		{
+			myTextWeight.setText("enter weight");
+		}
+		else
+		{
+			myTextWeight.setText(mySharedPreferences.getString("currentWeight"));
+		}
+		
+		
+		
 		showRoundProgressBar();
 		showBMI();
 	}
 	
 	public void showBMI()
 	{
-		String weight = mySharedPreferences.getString("weight");
+		String weight = "0";
+		if(TextUtils.isEmpty(mySharedPreferences.getString("currentWeight")))
+		{
+			weight = "0";
+		}
+		else
+		{
+			weight = mySharedPreferences.getString("currentWeight");
+		}
+		
+		
 		String height = mySharedPreferences.getString("heightValue");
 		float bMI = Float.parseFloat(weight) * 10000/(Float.parseFloat(height) * Float.parseFloat(height));
 		bodyMassIndex.setBMI(keepOneDecimal(bMI));
@@ -129,11 +161,24 @@ public class MainActivity extends BaseActivity
 	
 	public void showRoundProgressBar()
 	{
-		String weight = mySharedPreferences.getString("weight");
+		String weight = "0";
 		String goal = mySharedPreferences.getString("goalValue");
-		progress = (int) (100 * Float.parseFloat(goal)/Float.parseFloat(weight));
+		if(TextUtils.isEmpty(mySharedPreferences.getString("currentWeight")))
+		{
+			weight = "0";
+			roundProgressBar.setTextBottom("-- Kg");
+			progress = 0;
+		}
+		else
+		{
+			weight = mySharedPreferences.getString("currentWeight");
+			roundProgressBar.setTextBottom(String.valueOf(keepOneDecimal((Float.parseFloat(weight) - Float.parseFloat(goal)))) + " Kg");
+			progress = (int) (100 * Float.parseFloat(goal)/Float.parseFloat(weight));
+		}
+		
+		
 		roundProgressBar.setProgress(progress);
-		roundProgressBar.setTextBottom(String.valueOf(keepOneDecimal((Float.parseFloat(weight) - Float.parseFloat(goal)))) + " Kg");
+		
 		new Thread(new Runnable()
 		{
 			@Override
@@ -205,7 +250,7 @@ public class MainActivity extends BaseActivity
 										{
 											myTextWeight.setText(edValue_weight.getText().toString());
 										}
-										mySharedPreferences.putString("weight",edValue_weight.getText().toString());
+										mySharedPreferences.putString("currentWeight",edValue_weight.getText().toString());
 										mySharedPreferences.putString(date,edValue_weight.getText().toString());
 										
 										showRoundProgressBar();

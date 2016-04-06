@@ -23,9 +23,8 @@ public class MyView extends View
 	float graphHeight = dm.heightPixels - 200;
 	float originPointX = 100;
 	float originPointY = 50;
-	// float defaultWeightValue = (float) 80.4;
 
-	private float currentWeightValue = (float) 84.4;
+	private float startWeightValue = (float) 84.4;
 	private float targetWeightValue = (float) 75.0;
 
 	private int outLineNum = 15;
@@ -68,7 +67,7 @@ public class MyView extends View
 		canvas.drawColor(Color.WHITE);
 
 		drawXY(canvas);
-		drawOutLine(currentWeightValue, originPointX, originPointY,
+		drawOutLine(startWeightValue, originPointX, originPointY,
 				graphHeight, canvas);
 		drawDateText(originPointX, originPointY + graphHeight, graphWidth,
 				canvas);
@@ -120,7 +119,7 @@ public class MyView extends View
 
 		for (int i = 1; i < 31; i++)
 		{
-			if (!TextUtils.isEmpty(weightList.get(i)))
+			if (!TextUtils.isEmpty(weightList.get(i)) && !TextUtils.isEmpty(weightList.get(i-1)))
 			{
 				startDay = i + 1;
 				endDay = i;
@@ -137,14 +136,14 @@ public class MyView extends View
 
 	}
 
-	public float getCurrentWeightValue()
+	public float getStartWeightValue()
 	{
-		return currentWeightValue;
+		return startWeightValue;
 	}
 
-	public void setCurrentWeightValue(float currentWeightValue)
+	public void setStartWeightValue(float startWeightValue)
 	{
-		this.currentWeightValue = currentWeightValue;
+		this.startWeightValue = startWeightValue;
 	}
 
 	public float getTargetWeightValue()
@@ -197,7 +196,7 @@ public class MyView extends View
 		float translateValue = lengthY / outLineNum;// 两线之间的间隔
 		float translateY = startY + translateValue;
 		float translateX = startX - 31;
-		float averageTextValue = (currentWeightValue - targetWeightValue)
+		float averageTextValue = (startWeightValue - targetWeightValue)
 				/ (outLineNum - 6);// 体重的平均跳变
 
 		float textValue[] = new float[outLineNum];
@@ -313,12 +312,12 @@ public class MyView extends View
 		 * dm.heightPixels - 200; float originPointX = 100; float originPointY =
 		 * 50; //float defaultWeightValue = (float) 80.4;
 		 * 
-		 * float currentWeightValue = (float) 84.4; float targetWeightValue =
+		 * float startWeightValue = (float) 84.4; float targetWeightValue =
 		 * (float) 75; int outLineNum = 15;
 		 */
-		float averageTextValue = (currentWeightValue - targetWeightValue)
+		float averageTextValue = (startWeightValue - targetWeightValue)
 				/ (outLineNum - 6);
-		float topWeight = currentWeightValue + 3 * averageTextValue;
+		float topWeight = startWeightValue + 3 * averageTextValue;
 		float bottomWeight = targetWeightValue - 3 * averageTextValue;
 
 		float weightSpace = graphHeight / (topWeight - bottomWeight);

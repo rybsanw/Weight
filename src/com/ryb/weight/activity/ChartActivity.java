@@ -25,16 +25,12 @@ public class ChartActivity extends Activity
 	
 	private String targetWeight,currentWeight;
 	
+	private String startWeight = null;
+	
 	private String currentDate,currentDateYearMonth;
 	
 	private List<String> weightList = Arrays.asList("", "", "80.0",
 			"80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
-			"80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
-			"80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
-			"80.0", "80.0", "80.0", "80.0");
-	
-	private List<String> weightListTest = Arrays.asList("", "", "83.3",
-			"", "", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
 			"80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
 			"80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0", "80.0",
 			"80.0", "80.0", "80.0", "80.0");
@@ -50,9 +46,9 @@ public class ChartActivity extends Activity
 
 		mySharedPreferences = MySharedPreferences.getInstance(ChartActivity.this);
 		targetWeight = mySharedPreferences.getString("goalValue");
-		currentWeight = mySharedPreferences.getString("weight");
 		
 		currentDate = mySharedPreferences.getString("current_date");
+		startWeight = mySharedPreferences.getString("startWeight");
 		
 		String[] allDate = currentDate.split("/");
 		
@@ -67,7 +63,7 @@ public class ChartActivity extends Activity
 		titleButton.setVisibility(TRIM_MEMORY_UI_HIDDEN);
 		
 		chartView.setTargetWeightValue(Float.parseFloat(targetWeight));
-		chartView.setCurrentWeightValue((float) 84.4);
+		chartView.setStartWeightValue(Float.parseFloat(startWeight));
 		chartView.setWeightList(weightList);
 	}
 	

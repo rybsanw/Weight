@@ -15,12 +15,33 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/goal"
+            android:id="@+id/start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
+            android:text="起始体重： kg" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/startWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/start"
+            android:layout_alignRight="@id/start"
+            android:layout_below="@id/start"
+            android:numeric="decimal"
+            android:singleLine="true" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/start"
+            android:layout_alignRight="@id/start"
+            android:layout_below="@id/startWeight"
             android:text="目标体重： kg" >
         </TextView>
 
@@ -55,6 +76,18 @@
             android:numeric="decimal"
             android:singleLine="true" >
         </EditText>
+
+        <Button
+            android:id="@+id/colseButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/goal"
+            android:layout_alignRight="@id/goal"
+            android:layout_below="@id/heightValue"
+            android:text="close"
+            >
+
+        </Button>
     </RelativeLayout>
 
 </LinearLayout>
