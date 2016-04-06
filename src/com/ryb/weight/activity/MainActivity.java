@@ -69,8 +69,6 @@ public class MainActivity extends BaseActivity
 			return;
 		}
 		
-		
-		
 		setContentView(R.layout.activity_main);
 		title = (TextView) findViewById(R.id.title_text);
 		title_button = (Button) findViewById(R.id.title_button);
@@ -91,8 +89,6 @@ public class MainActivity extends BaseActivity
 		mySharedPreferences.putString("2016/4/2","82.0");
 		mySharedPreferences.putString("2016/4/3","83.5");
 		mySharedPreferences.putString("2016/4/4","82.8");*/
-		mySharedPreferences.putString("2016/4/4","82.8");
-		
 		
 		dm = getResources().getDisplayMetrics();
 		width = dm.widthPixels;
@@ -100,7 +96,7 @@ public class MainActivity extends BaseActivity
 		settingDialog = new SettingDialog(this,R.style.dialog);//创建Dialog并设置样式主题
 		Window win = settingDialog.getWindow();
 		LayoutParams params = new LayoutParams();
-		params.x = (int) (width / 2 - 150);//设置x坐标
+		params.x = (int) (width / 2 - 100);//设置x坐标
 		params.y = (int) (- height / 2 - 120);//设置y坐标
 		win.setAttributes(params);
 		settingDialog.setCanceledOnTouchOutside(true);//设置点击Dialog外部任意区域关闭Dialog
@@ -134,8 +130,6 @@ public class MainActivity extends BaseActivity
 		{
 			myTextWeight.setText(mySharedPreferences.getString("currentWeight"));
 		}
-		
-		
 		
 		showRoundProgressBar();
 		showBMI();
@@ -259,7 +253,7 @@ public class MainActivity extends BaseActivity
 								}).setNegativeButton("取消", null).show();
 				break;
 			case R.id.title_button:
-				title.setText("touch the edit");
+				//title.setText("touch the edit");
 				settingDialog.show();
 				/*
 				 * dialog_button 的findViewById必须要在其view show出来之后才能进行及绑定监听器
@@ -269,13 +263,13 @@ public class MainActivity extends BaseActivity
 				dialog_button.setOnClickListener(new MyOnClickListener());
 				break;
 			case R.id.setting_dialog:
-				title.setText("touch the dialog");
+				//title.setText("touch the dialog");
 				Intent intent = new Intent(MainActivity.this,SettingActivity.class);
 				startActivity(intent);
 				settingDialog.dismiss();
 				break;
 			case R.id.chart_button:
-				title.setText("touch the chart_button");
+				//title.setText("touch the chart_button");
 				Intent intent2 = new Intent(MainActivity.this,ChartActivity.class);
 				startActivity(intent2);
 				break;

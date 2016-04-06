@@ -21,6 +21,7 @@ public class MyView extends View
 
 	float graphWidth = dm.widthPixels - 200;
 	float graphHeight = dm.heightPixels - 200;
+
 	float originPointX = 100;
 	float originPointY = 50;
 
@@ -67,8 +68,8 @@ public class MyView extends View
 		canvas.drawColor(Color.WHITE);
 
 		drawXY(canvas);
-		drawOutLine(startWeightValue, originPointX, originPointY,
-				graphHeight, canvas);
+		drawOutLine(startWeightValue, originPointX, originPointY, graphHeight,
+				canvas);
 		drawDateText(originPointX, originPointY + graphHeight, graphWidth,
 				canvas);
 
@@ -79,6 +80,46 @@ public class MyView extends View
 		 */
 
 		drawChart(weightList, canvas);
+	}
+
+	public float getGraphWidth()
+	{
+		return graphWidth;
+	}
+
+	public void setGraphWidth(float graphWidth)
+	{
+		this.graphWidth = graphWidth;
+	}
+
+	public float getGraphHeight()
+	{
+		return graphHeight;
+	}
+
+	public void setGraphHeight(float graphHeight)
+	{
+		this.graphHeight = graphHeight;
+	}
+
+	public float getOriginPointX()
+	{
+		return originPointX;
+	}
+
+	public void setOriginPointX(float originPointX)
+	{
+		this.originPointX = originPointX;
+	}
+
+	public float getOriginPointY()
+	{
+		return originPointY;
+	}
+
+	public void setOriginPointY(float originPointY)
+	{
+		this.originPointY = originPointY;
 	}
 
 	public List<String> getWeightList()
@@ -119,7 +160,8 @@ public class MyView extends View
 
 		for (int i = 1; i < 31; i++)
 		{
-			if (!TextUtils.isEmpty(weightList.get(i)) && !TextUtils.isEmpty(weightList.get(i-1)))
+			if (!TextUtils.isEmpty(weightList.get(i))
+					&& !TextUtils.isEmpty(weightList.get(i - 1)))
 			{
 				startDay = i + 1;
 				endDay = i;
@@ -195,7 +237,7 @@ public class MyView extends View
 	{
 		float translateValue = lengthY / outLineNum;// 两线之间的间隔
 		float translateY = startY + translateValue;
-		float translateX = startX - 31;
+		float translateX = startX - 40;
 		float averageTextValue = (startWeightValue - targetWeightValue)
 				/ (outLineNum - 6);// 体重的平均跳变
 
@@ -214,7 +256,7 @@ public class MyView extends View
 		paint.setColor(0xaa00aa00);// 蓝色 
 
 		Paint paintText = new Paint();
-
+		paintText.setTextSize(18);
 		for (int i = 0; i < outLineNum; i++)
 		{
 			canvas.save();
@@ -265,6 +307,7 @@ public class MyView extends View
 		}
 
 		Paint paintText = new Paint();
+		paintText.setTextSize(18);
 
 		for (int i = 0; i < intervalNum; i++)
 		{

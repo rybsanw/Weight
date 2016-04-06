@@ -84,9 +84,7 @@
             android:layout_alignLeft="@id/goal"
             android:layout_alignRight="@id/goal"
             android:layout_below="@id/heightValue"
-            android:text="close"
-            >
-
+            android:text="close" >
         </Button>
     </RelativeLayout>
 

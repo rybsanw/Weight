@@ -23,7 +23,7 @@ public class BodyMassIndex extends View
 	
 	float space = 20;
 	float rectYPosition = 20;
-	float rectHeight = 50;
+	float rectHeight = 100;
 	float rectYEndPosition = rectYPosition + rectHeight;
 	float canvasWidth = (float)graphWidth - 2 * space;
 	
@@ -32,6 +32,8 @@ public class BodyMassIndex extends View
 	float strThreeCentre = strTwoCentre + canvasWidth / 5;
 	float strFourCentre = strThreeCentre + canvasWidth / 5;
 
+	private int textSize = 20;
+	
 	public BodyMassIndex(Context context)
 	{
 		super(context);
@@ -64,11 +66,12 @@ public class BodyMassIndex extends View
 		
 		paint.setStyle(Paint.Style.STROKE); // 设置空心
 		paint.setAntiAlias(true); // 消除锯齿
+		paint.setTextSize(textSize);
 
 		String str = "BMI";
 		float textWidth = paint.measureText(str);
 		
-		canvas.drawText(str, space, textWidth, paint); // 画出进度百分比
+		canvas.drawText(str, space, textWidth, paint); // 画出BMI字体
 		
 		canvas.translate(0, 20);
 		paint.setStyle(Paint.Style.FILL);
@@ -84,18 +87,27 @@ public class BodyMassIndex extends View
 		canvas.drawRect(space + canvasWidth * 4 /5, rectYPosition, space + canvasWidth * 5 /5, rectYEndPosition, paint);
 		
 		paint.setColor(Color.BLACK);
-		canvas.drawText(strOne, strOneCentre - strOneWidth / 2, 50, paint); 
-		canvas.drawText(strTwo, strTwoCentre - strTwoWidth / 2, 50, paint);
-		canvas.drawText(strThree, strThreeCentre - strThreeWidth / 2, 50, paint);
-		canvas.drawText(strFour, strFourCentre - strFourWidth / 2, 50, paint);
+		canvas.drawText(strOne, strOneCentre - strOneWidth / 2, 20 + rectHeight/2, paint); 
+		canvas.drawText(strTwo, strTwoCentre - strTwoWidth / 2 - 10, 20 + rectHeight/2, paint);
+		canvas.drawText(strThree, strThreeCentre - strThreeWidth / 2 - 10, 20 + rectHeight/2, paint);
+		canvas.drawText(strFour, strFourCentre - strFourWidth / 2 - 10, 20 + rectHeight/2, paint);
 		
 		//canvas.drawLine(100, 20, 100, 20 + rectHeight, paint);
 		
 		canvas.drawLine(bmiX, 20, bmiX, 20 + rectHeight, paint);
-		canvas.drawText(String.valueOf(bmiValue), bmiX, 40 + rectHeight, paint);
+		canvas.drawText(String.valueOf(bmiValue), bmiX, 50 + rectHeight, paint);
 		
 	}
 
+	public int getTextSize()
+	{
+		return textSize;
+	}
+	public void setTextSize(int textSize)
+	{
+		this.textSize = textSize;
+	}
+	
 	public synchronized void setBMI(float value)
 	{
 		this.bmiValue = value;

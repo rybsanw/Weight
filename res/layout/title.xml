@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="50dp"
-    android:background="#484E61" >
+    android:layout_height="40dp"
+    android:background="#0359BE" >
 
     <TextView
         android:id="@+id/title_text"
@@ -10,12 +10,14 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:textColor="#fff"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:textSize="21sp" />
 
     <Button
         android:id="@+id/title_button"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp" 

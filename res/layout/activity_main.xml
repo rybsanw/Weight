@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:background="#aaaaaa"
+        android:background="#0359BE"
         android:orientation="horizontal" >
 
         <TextView
@@ -21,7 +21,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ff00ff"
             android:gravity="right|bottom"
             android:paddingRight="10dp"
             android:textSize="40dp" />
@@ -31,7 +30,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ff00ff"
             android:gravity="left|bottom"
             android:paddingLeft="10dp"
             android:text="83.3"
@@ -41,7 +39,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#aaaaaa"
+        android:background="#0359BE"
         android:orientation="horizontal" >
 
         <TextView
@@ -49,7 +47,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ff00ff"
             android:gravity="right|top"
             android:paddingRight="10dp"
             android:textSize="30dp" />
@@ -59,7 +56,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ff00ff"
             android:gravity="left|top"
             android:paddingLeft="10dp"
             android:text="Kg"
@@ -68,16 +64,16 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="200dip"
-        android:background="#aaaaaa" >
+        android:layout_height="230dip" >
 
         <com.ryb.weight.view.RoundProgressBar
             android:id="@+id/roundProgressBar2"
             android:layout_width="200dip"
             android:layout_height="200dip"
+            android:layout_marginTop="20dip"
             android:layout_centerHorizontal="true"
             android_custom:roundColor="#D1D1D1"
-            android_custom:roundProgressColor="@android:color/black"
+            android_custom:roundProgressColor="#FF2800"
             android_custom:roundWidth="10dip"
             android_custom:textColor="#9A32CD"
             android_custom:textIsDisplayable="false"
@@ -92,7 +88,7 @@
 
     <Button
         android:id="@+id/chart_button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="chart" />
 
