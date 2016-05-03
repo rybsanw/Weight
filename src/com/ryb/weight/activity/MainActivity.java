@@ -96,8 +96,8 @@ public class MainActivity extends BaseActivity
 		settingDialog = new SettingDialog(this,R.style.dialog);//创建Dialog并设置样式主题
 		Window win = settingDialog.getWindow();
 		LayoutParams params = new LayoutParams();
-		params.x = (int) (width / 2 - 100);//设置x坐标
-		params.y = (int) (- height / 2 - 120);//设置y坐标
+		params.x = (int) (width / 2 - 80);//设置x坐标
+		params.y = (int) (- height / 2 - 150);//设置y坐标
 		win.setAttributes(params);
 		settingDialog.setCanceledOnTouchOutside(true);//设置点击Dialog外部任意区域关闭Dialog
 		//settingDialog.show();
@@ -124,10 +124,12 @@ public class MainActivity extends BaseActivity
 		super.onStart();
 		if(TextUtils.isEmpty(mySharedPreferences.getString(date)))
 		{
+			myTextWeight.setTextSize(20);
 			myTextWeight.setText("enter weight");
 		}
 		else
 		{
+			myTextWeight.setTextSize(40);
 			myTextWeight.setText(mySharedPreferences.getString("currentWeight"));
 		}
 		
@@ -238,10 +240,12 @@ public class MainActivity extends BaseActivity
 									{
 										if(TextUtils.isEmpty(edValue_weight.getText().toString()))
 										{
-											myTextWeight.setText("enter weight");
+											myTextWeight.setTextSize(20);
+											myTextWeight.setText("click and enter weight");
 										}
 										else
 										{
+											myTextWeight.setTextSize(40);
 											myTextWeight.setText(edValue_weight.getText().toString());
 										}
 										mySharedPreferences.putString("currentWeight",edValue_weight.getText().toString());

@@ -6,6 +6,8 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ public class ChartActivity extends Activity
 {
 	private TextView titleText = null;
 	private Button titleButton = null;
+	private Button leftButton,rightButton;
 
 	private TextView dateText = null;
 
@@ -42,6 +45,8 @@ public class ChartActivity extends Activity
 	
 	private float graphWidth;
 	private float graphHeight;
+	
+	private static int totalMonth;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +60,12 @@ public class ChartActivity extends Activity
 		graphHeight = dm.heightPixels;
 
 		chartView = (MyView) findViewById(R.id.chart);
+		leftButton = (Button) findViewById(R.id.leftButton);
+		rightButton = (Button) findViewById(R.id.rightButton);
+		
+		leftButton.setOnClickListener(new MyButtonClickListener());
+		rightButton.setOnClickListener(new MyButtonClickListener());
+		
 
 		mySharedPreferences = MySharedPreferences
 				.getInstance(ChartActivity.this);
@@ -67,12 +78,13 @@ public class ChartActivity extends Activity
 
 		currentDateYearMonth = allDate[0] + "/" + allDate[1];
 		setWeightList(currentDateYearMonth);
+		totalMonth = monthStringToInt(currentDateYearMonth);
 
 		titleText = (TextView) findViewById(R.id.title_text);
 		titleButton = (Button) findViewById(R.id.title_button);
 		dateText = (TextView) findViewById(R.id.dateText);
 
-		dateText.setText(currentDate);
+		dateText.setText(currentDateYearMonth);
 		titleText.setText("图表");
 		titleButton.setVisibility(TRIM_MEMORY_UI_HIDDEN);
 
@@ -93,4 +105,88 @@ public class ChartActivity extends Activity
 			weightList.set(i - 1, mySharedPreferences.getString(temp));
 		}
 	}
+	
+	class MyButtonClickListener implements OnClickListener
+	{
+
+		@Override
+		public void onClick(View arg0)
+		{
+			switch(arg0.getId())
+			{
+			case R.id.leftButton:
+				totalMonth --;
+				
+				break;
+			case R.id.rightButton:
+				totalMonth ++;
+				
+				break;
+			}
+			
+			currentDateYearMonth = monthIntToString(totalMonth);
+			dateText.setText(currentDateYearMonth);
+			setWeightList(currentDateYearMonth);
+			chartView.setWeightList(weightList);
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * @param currentDateYearMonth "2016/5"
+	 * @return 2016*12 + 5
+	 */
+	private int monthStringToInt(String currentDateYearMonth)
+	{
+		int ret = 0;
+		String[] allDate;
+		allDate = currentDateYearMonth.split("/");
+		ret = Integer.parseInt(allDate[0]) * 12 + Integer.parseInt(allDate[1]);
+		return ret;
+	}
+	
+	/**
+	 * 
+	 * @param totalMonth 2016*12 + 5
+	 * @return 2016/05
+	 */
+	private String monthIntToString(int totalMonth)
+	{
+		String ret = null;
+		if(totalMonth % 12 == 0)
+		{
+			ret = String.valueOf(totalMonth / 12 - 1) + "/" + "12";
+		}
+		else
+		{
+			ret = String.valueOf(totalMonth / 12) + "/" + String.valueOf(totalMonth % 12);
+		}
+		
+		
+		return ret;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
